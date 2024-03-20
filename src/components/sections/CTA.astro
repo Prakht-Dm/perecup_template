@@ -41,18 +41,64 @@ import Paragraph from "../shared/Paragraph.astro";
           class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight
           font-bold text-heading-1"
         >
-          Quick Start your <span class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600">Strategic Digital</span> Marketing Campaing
+          Оставте звявку на  <span class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600">выкуп</span>  вышего автомобиля
         </h1>
         <Paragraph className={"pt-10"}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-          delectus architecto ullam earum
+          Рассчитаем стоимость и перезвоним
         </Paragraph>
         <div class="mx-auto max-w-md sm:max-w-xl pt-10">
-          <Button variant={"primary"}>
-            <span class="text-white relative z-[5]">Get In Touch</span>
-          </Button>
+            <form class="firstForm" id="firstForm">
+                <p></p>
+                <input id="name" type="text" placeholder="Ваше имя"/>
+                <input id="phone" type="text" placeholder="Номер телефона"/>
+                <input id="model" type="text" placeholder="Модель и марка авто"/>
+                <input id="number" type="text" placeholder="Гос. номер"/>
+                <Button variant={"primary"} type="submit">
+                    <span class="text-white relative z-[5]">Отправить</span>
+                </Button>
+            </form>
+
         </div>
       </div>
     </div>
   </Container>
 </section>
+<script>
+    //@ts-nocheck
+    const name = document.getElementById('name')
+    const phone = document.getElementById('phone')
+    const model = document.getElementById('model')
+    const number = document.getElementById('number')
+    const firstForm = document.getElementById('firstForm')
+    const api = () => `https://api.telegram.org/bot6423420288:AAFRHw2xBXexwfdKxcJq3fooc5EnQ3J1T7c/sendMessage?chat_id=-1001997786688&text=*заявка*%0A Имя: ${name.value}  %0A Номер телефона: [${phone.value} ](tel:${phone.value}) %0A Авто: ${model.value} %0A Номер: ${number.value} &parse_mode=Markdown`
+    firstForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        fetch(api(), {mode: 'no-cors'}).then(res=>console.log(res)).catch(e => console.log(e))
+    })
+</script>
+<style>
+    .firstForm{
+        color: #C393FF;
+        background-color: white;
+        max-width: 100%;
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2px 30px 15px;
+        border-radius: 8px;
+        line-height: 1.4rem;
+        box-shadow: -1px 1px 50px 0px rgba(195, 147, 255, 0.8);
+        -webkit-box-shadow: -1px 1px 50px 0px rgba(195, 147, 255, 0.8);
+        -moz-box-shadow: -1px 1px 50px 0px rgba(195, 147, 255, 0.8);
+    }
+    .firstForm >input{
+        border: 1px solid #C393FF;
+        padding: 10px 5px;
+        border-radius: 8px;
+    }
+    .firstForm >input::placeholder{
+        color: rgba(195, 147, 255, 0.63)
+    }
+
+

@@ -22,6 +22,7 @@ const { title, description } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
   </head>
   <body class="overflow-hidden overflow-y-auto bg-body">
     <Navbar />
@@ -110,20 +111,15 @@ const { title, description } = Astro.props;
       });
     }
   </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TVTVCG5JWT"></script>
   <script>
-    var _paq = window._paq = window._paq || [];
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-      var u="https://xn7sbeca1bbm8ampihr2jzaxnp1ai.matomo.cloud/";
-      _paq.push(['setTrackerUrl', u+'matomo.php']);
-      _paq.push(['setSiteId', '1']);
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.async=true; g.src='https://cdn.matomo.cloud/xn7sbeca1bbm8ampihr2jzaxnp1ai.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
-  </script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-TVTVCG5JWT');
+  </script>
 </html>
 <style is:global>
   :root {

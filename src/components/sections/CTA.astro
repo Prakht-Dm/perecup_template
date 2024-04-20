@@ -70,10 +70,23 @@ import Paragraph from "../shared/Paragraph.astro";
     const model = document.getElementById('model')
     const number = document.getElementById('number')
     const firstForm = document.getElementById('firstForm')
-    const api = () => `https://api.telegram.org/bot6423420288:AAFRHw2xBXexwfdKxcJq3fooc5EnQ3J1T7c/sendMessage?chat_id=-1001997786688&text=*заявка*%0A Имя: ${name.value}  %0A Номер телефона: [${phone.value} ](tel:${phone.value}) %0A Авто: ${model.value} %0A Номер: ${number.value} &parse_mode=Markdown`
+
+    const popupBlock = document.getElementById('popupBlock')
+    const showPopup = () => {
+        popupBlock.style.display = 'flex'
+        setTimeout(() => { popupBlock.style.display = 'none' }, 2000)
+    }
+
+    const clearForm = () => {
+        [name,phone,model,number].forEach((item) => item.value = '')
+    }
+    const api = () => `https://api.telegram.org/bot6423420288:AAFRHw2xBXexwfdKxcJq3fooc5EnQ3J1T7c/sendMessage?chat_id=-1001997786688&text=*заявка*%0A Имя: ${name.value}  %0A Номер телефона: [${phone.value}](tel:${phone.value}) %0A Авто: ${model.value} %0A Номер: ${number.value} &parse_mode=Markdown`
     firstForm.addEventListener('submit', (e) => {
         e.preventDefault()
-        fetch(api(), {mode: 'no-cors'}).then(res=>console.log(res)).catch(e => console.log(e))
+        fetch(api(), {mode: 'no-cors'}).then(()=> {
+            clearForm()
+            showPopup()
+        }).catch(e => console.log(e))
     })
 </script>
 <style>
